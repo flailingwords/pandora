@@ -1,0 +1,70 @@
+@reference "tailwindcss";
+
+@layer components {
+    .article {
+        .article-body {
+            h2,
+            h3,
+            h4,
+            h5 {
+                @apply mt-3.5;
+            }
+
+            p {
+                @apply my-3;
+            }
+
+            li {
+                @apply ml-6;
+                @apply my-1.5;
+            }
+
+            ol li {
+                @apply list-decimal;
+                @apply my-1.5;
+            }
+
+            ul li {
+                @apply list-[circle];
+            }
+
+            blockquote {
+                @apply border-l-4 border-slate-600 bg-slate-600/25 px-2 py-1 dark:border-slate-400/25 dark:bg-slate-400/25;
+
+                & > p {
+                    @apply py-1;
+                }
+            }
+
+            :not(blockquote) + blockquote:has(+ blockquote) {
+                @apply rounded-tl-sm rounded-tr-sm;
+            }
+
+            blockquote + blockquote:has(+ :not(blockquote)) {
+                @apply rounded-br-sm rounded-bl-sm;
+            }
+
+            blockquote:first-child:has(+ :not(blockquote)),
+            :not(blockquote) + blockquote:has(+ :not(blockquote)),
+            :not(blockquote) + blockquote:last-child {
+                @apply rounded-tl-sm rounded-tr-sm rounded-br-sm rounded-bl-sm;
+            }
+
+            table {
+                @apply w-full border;
+
+                tr {
+                    @apply border-b;
+                }
+
+                td {
+                    @apply w-fit p-1;
+
+                    &:not(:last-of-type) {
+                        @apply border-r;
+                    }
+                }
+            }
+        }
+    }
+}

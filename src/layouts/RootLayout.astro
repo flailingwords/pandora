@@ -1,0 +1,27 @@
+---
+import HTMLHead from '@/components/materials/HTMLHead.astro'
+import BannerImage from '@/components/materials/BannerImage.astro'
+import Nav from '@/components/materials/Nav.astro'
+import Menu from '@/components/Menu.astro'
+
+import '@/styles/global.css'
+---
+
+<!doctype html>
+<html lang='en'>
+    <HTMLHead />
+    <body
+        class='scrollbar-gutter-stable bg-slate-50 text-slate-800 dark:bg-slate-700 dark:text-slate-300'
+    >
+        <Nav />
+        <div
+            class='shadow-custom z-0 container mx-auto mt-10 bg-slate-50 shadow-slate-800/25 dark:bg-slate-900 dark:shadow-slate-300'
+        >
+            <BannerImage />
+            <Menu />
+            <div class='content p-2'>
+                <slot />
+            </div>
+        </div>
+    </body></html
+>

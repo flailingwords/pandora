@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+    font-family: 'Montalban';
+    src: url('/static/fonts/Montalban.ttf') format('truetype');
+}
+
+@theme {
+    --font-montalban: 'Montalban';
+    --shadow-custom: 0px 0px 5px 2px;
+    --text-shadow-custom: 0px 0px 1px;
+}
+
+@layer base {
+    :root {
+        scrollbar-color: #333 #111;
+    }
+
+    .light body {
+        @apply bg-slate-50 text-slate-800;
+    }
+
+    .dark body {
+        @apply dark:bg-slate-700 dark:text-slate-300;
+    }
+
+    h1 {
+        @apply text-4xl leading-12;
+    }
+
+    h2 {
+        @apply text-3xl;
+    }
+
+    h3 {
+        @apply text-2xl;
+    }
+
+    h4 {
+        @apply text-xl;
+    }
+
+    h5 {
+        @apply text-lg;
+    }
+
+    a {
+        @apply text-sky-800 dark:text-sky-300;
+
+        &:hover {
+            @apply text-shadow-custom text-shadow-sky-800 dark:text-shadow-sky-400;
+        }
+    }
+
+    .content a {
+        @apply underline decoration-1;
+    }
+}
+
+@import './article.css';
+@import './scrollbar-gutter.css';

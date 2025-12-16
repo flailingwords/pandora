@@ -1,0 +1,28 @@
+---
+import ManifestoLayout from '@/layouts/ManifestoLayout.astro'
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+    const chapters = await getCollection('manifesto')
+
+    const result = chapters.map((chapter) => ({
+        params: { id: chapter.id },
+        props: { chapter, chapters }
+    }))
+
+    return result
+}
+
+const { chapter, chapters } = Astro.props
+
+const headings = chapters.map((e) => ({
+    slug: './' + e.id,
+    text: e.data.chapterTitle
+}))
+
+const { Content } = await render(chapter)
+---
+
+<ManifestoLayout chapter={chapter} headings={headings} sectionsTitle='Chapters'>
+    <Content />
+</ManifestoLayout>

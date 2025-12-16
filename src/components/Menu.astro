@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content'
+
+const pathParts = Astro.originPathname.split('/')
+
+const articles = await getCollection('articles')
+---
+
+<div
+    class='clear-both my-1.5 w-full border-b border-b-slate-800/25 px-2 dark:border-b-slate-300/25'
+>
+    <div class='w-fit'>
+        <div class='grid grid-flow-col gap-3'>
+            <div><a href='/'>Home</a></div>
+            <div>
+                <a class='peer relative' href='/articles'
+                    >Articles
+                    <div
+                        class='absolute z-20 hidden -translate-y-1 rounded-tr rounded-br rounded-bl bg-slate-300 px-2 py-1 text-slate-800 *:border-b *:border-b-slate-700 *:py-1 *:not-last-of-type:border-b *:not-last-of-type:border-b-slate-500/35 peer-hover:block *:last-of-type:border-b-0 hover:block dark:bg-slate-700 dark:text-slate-800'
+                    >
+                        {
+                            articles.map((article) => (
+                                <div>
+                                    <a href={`/articles/${article.id}`}>
+                                        {article.data.title}
+                                    </a>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href='/articles/manifesto'>Manifesto</a>
+            </div>
+        </div>
+    </div>
+</div>

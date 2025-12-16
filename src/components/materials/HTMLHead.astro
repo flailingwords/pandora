@@ -1,0 +1,16 @@
+---
+const includeScript = Astro.props.includeScript ?? true
+---
+
+<head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Pandora</title>
+    <script type='module' src='/src/styles/global.css'></script>
+
+    {includeScript ? <script src='/static/js/theme-enforcement.js' /> : null}
+
+    <slot />
+</head>

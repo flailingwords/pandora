@@ -1,0 +1,29 @@
+---
+import RootLayout from '@/layouts/RootLayout.astro'
+import { convertEpochToString } from '@/lib/utils'
+
+const { article } = Astro.props
+---
+
+<RootLayout>
+    <div class='article'>
+        <div class='article-header'>
+            <!-- Add other UI components here, like common headers and footers. -->
+            <h1>{article.data.title}</h1>
+            <p>by {article.data.authors.join(', ')}</p>
+            <!-- 2. Rendered HTML will be passed into the default slot. -->
+            <p>Written on: {convertEpochToString(article.data.created)}</p>
+            {
+                article.data.modified > article ? (
+                    <p>
+                        Last updated on:{' '}
+                        {convertEpochToString(article.data.modified)}
+                    </p>
+                ) : null
+            }
+        </div>
+        <div class='article-body'>
+            <slot />
+        </div>
+    </div>
+</RootLayout>

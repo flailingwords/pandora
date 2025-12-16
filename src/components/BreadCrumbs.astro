@@ -1,0 +1,41 @@
+---
+// @ts-nocheck
+import ChevronDoubleRightIcon from '@heroicons/react/16/solid/ChevronDoubleRightIcon'
+
+import { capitalizeFirstLetter } from '@/lib/utils'
+
+const pathParts = Astro.originPathname.split('/')
+---
+
+<div class='w-full border-b border-b-slate-800/25 dark:border-b-slate-300/25'>
+    <div class='w-fit py-1 align-middle text-sm'>
+        {
+            ['Home', ...pathParts.filter(Boolean)].reduce((c, e, i) => {
+                if (i > 0)
+                    c.push(
+                        <span class='h-5 w-5 *:inline *:h-4 *:w-4'>
+                            <ChevronDoubleRightIcon />
+                        </span>
+                    )
+
+                if (i === 0 && Astro.originPathname === '/')
+                    c.push(
+                        <span class='text-slate-800 dark:text-slate-300'>
+                            Home
+                        </span>
+                    )
+                else
+                    c.push(
+                        <a
+                            class='text-slate-800 hover:rounded hover:shadow hover:shadow-white dark:text-slate-300'
+                            href='/'
+                        >
+                            {capitalizeFirstLetter(e)}
+                        </a>
+                    )
+
+                return c
+            }, [])
+        }
+    </div>
+</div>
