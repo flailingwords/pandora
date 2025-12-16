@@ -8,9 +8,12 @@ const includeScript = Astro.props.includeScript ?? true
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
     <title>Pandora</title>
-    <script is:inline type='module' src='/src/styles/global.css'></script>
 
-    {includeScript ? <script src='/static/js/theme-enforcement.js' /> : null}
+    {
+        includeScript ? (
+            <script is:inline src='/static/js/theme-enforcement.js' />
+        ) : null
+    }
 
     <slot />
 </head>
